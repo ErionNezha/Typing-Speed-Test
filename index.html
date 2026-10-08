@@ -1,0 +1,364 @@
+<!-- Created by Erion Nezha — © 2026 All rights reserved -->
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Shkrimi — Erion Nezha</title>
+<meta name="description" content="Sa shpejt shkruan shqip? Mat WPM dhe saktësinë — me histori dhe grafik.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<style id="appcss">
+/* ============ ERION NEZHA · ULTRA-PREMIUM THEME (shared) ============ */
+:root{
+  --bg0:#070b16; --bg1:#0b1124; --gold:#D4AF37; --gold2:#f3dd8f;
+  --ink:#eef1f7; --mut:#9aa3b8; --glass:rgba(255,255,255,.055);
+  --line:rgba(212,175,55,.22); --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:var(--bg0); color:var(--ink); min-height:100vh; overflow-x:hidden;
+}
+.bg-orbs{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg-orbs span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 14s ease-in-out infinite alternate}
+.bg-orbs span:nth-child(1){width:520px;height:520px;left:-140px;top:-120px;background:radial-gradient(circle,#D4AF37,transparent 65%)}
+.bg-orbs span:nth-child(2){width:620px;height:620px;right:-180px;top:30%;background:radial-gradient(circle,#2b3f8f,transparent 65%);animation-delay:-5s}
+.bg-orbs span:nth-child(3){width:460px;height:460px;left:20%;bottom:-160px;background:radial-gradient(circle,#6b4fa1,transparent 65%);animation-delay:-9s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.site-header{padding:64px 0 30px;text-align:center}
+.overline{letter-spacing:.42em;font-size:11px;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.site-header h1{font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.15;
+  background:linear-gradient(120deg,#fff 20%,var(--gold2) 55%,var(--gold) 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.site-header p{color:var(--mut);max-width:640px;margin:14px auto 0;font-size:16px;line-height:1.65}
+.live-badge{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 18px;border-radius:999px;
+  border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);font-size:13px;color:var(--gold2);letter-spacing:.08em}
+.live-badge i{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 12px #3ddc84;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.demo-wrap{margin:26px 0 54px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 24px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);padding:30px}
+.code-section{margin:0 0 60px}
+.code-section h2{font-size:24px;margin-bottom:6px}
+.code-section .sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0;align-items:center}
+.ctab{padding:10px 22px;border-radius:12px 12px 0 0;border:1px solid var(--line);border-bottom:none;cursor:pointer;
+  background:rgba(255,255,255,.03);color:var(--mut);font-size:14px;font-weight:600;letter-spacing:.04em;transition:.25s}
+.ctab.active{background:linear-gradient(180deg,rgba(212,175,55,.22),rgba(212,175,55,.06));color:var(--gold2)}
+.ctab:hover{color:var(--ink)}
+#copyBtn{margin-left:auto;padding:9px 20px;border-radius:10px;border:1px solid var(--line);cursor:pointer;
+  background:linear-gradient(120deg,var(--gold),#a8842a);color:#0a0e1a;font-weight:700;font-size:13px;transition:.25s}
+#copyBtn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(212,175,55,.35)}
+.codebox{border:1px solid var(--line);border-radius:0 14px 14px 14px;overflow:hidden;background:#0d1326}
+.codebox pre{margin:0;max-height:560px;overflow:auto}
+.codebox pre code{display:block;padding:22px;font-family:"Cascadia Code","Fira Code",Consolas,monospace;font-size:13.5px;line-height:1.7;background:transparent}
+.codebox pre::-webkit-scrollbar{width:10px;height:10px}
+.codebox pre::-webkit-scrollbar-thumb{background:rgba(212,175,55,.35);border-radius:8px}
+footer{text-align:center;padding:34px 20px 44px;color:var(--mut);font-size:14px;border-top:1px solid rgba(212,175,55,.14)}
+footer strong{color:var(--gold2)}
+/* ============ APP CSS (per projekt) ============ */
+.demo-note{background:rgba(212,175,55,.1);border:1px dashed rgba(212,175,55,.5);border-radius:12px;padding:10px 16px;font-size:13.5px;color:#f3dd8f;margin-bottom:18px}
+.app-title{font-size:26px;margin-bottom:18px;color:#fff}
+.uat-panel{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+.uat-panel h3{font-size:17px;margin-bottom:14px;color:#fff}
+.uat-tl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:10px}
+.uat-tl-head h3{margin:0}
+.btn-gold{background:linear-gradient(120deg,var(--gold),#a8842a);border:none;color:#0a0e1a;font-weight:700;border-radius:12px;padding:12px 26px;font-size:15px;cursor:pointer;transition:.25s;font-family:inherit}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(212,175,55,.35)}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 22px;font-size:15px;cursor:pointer;transition:.25s;font-family:inherit}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold2)}
+.btn-danger{background:rgba(255,90,90,.12);border:1px solid rgba(255,90,90,.4);color:#ff9a9a;border-radius:10px;padding:9px 16px;font-size:13.5px;cursor:pointer;transition:.25s;font-family:inherit}
+.btn-danger:hover{background:rgba(255,90,90,.22)}
+.tst-dur{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:15px}
+.dbtn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--mut);border-radius:999px;padding:8px 22px;font-size:14px;cursor:pointer;transition:.2s;font-family:inherit}
+.dbtn.on{background:rgba(212,175,55,.18);border-color:var(--gold);color:var(--gold2);font-weight:700}
+.tst-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.tst-stat{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.tst-num{font-size:30px;font-weight:800;color:var(--gold2)}
+.tst-lbl{font-size:13px;color:var(--mut);margin-top:4px}
+.tst-box{position:relative;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:14px;padding:26px;cursor:text;margin-bottom:16px;min-height:170px}
+.tst-box:focus-within{border-color:var(--gold)}
+.tst-hint{text-align:center;color:var(--mut);font-size:15px;padding:30px 0}
+#tstText{font-size:20px;line-height:2.1;font-family:Georgia,"Times New Roman",serif;display:none}
+.tst-box.live #tstText{display:block}
+.tst-box.live .tst-hint{display:none}
+.tch{border-radius:4px;padding:1px 0}
+.tch.ok{color:#3ddc84}
+.tch.bad{color:#ff6b6b;background:rgba(255,107,107,.22)}
+.tch.cur{border-left:3px solid var(--gold);margin-left:-3px;animation:blink 1s infinite}
+@keyframes blink{50%{border-color:transparent}}
+.tch.curw{background:rgba(212,175,55,.14)}
+.tst-hidden{position:absolute;opacity:0;top:0;left:0;width:10px;height:10px;border:none;pointer-events:none}
+.tst-btns{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.tst-record{font-size:15px;color:var(--gold2);font-weight:700;margin-bottom:12px}
+#tstChart{width:100%;height:180px;background:rgba(0,0,0,.25);border-radius:12px;border:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.tst-hrow{display:flex;justify-content:space-between;font-size:14px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.06)}
+.tst-hrow span{color:var(--mut);font-size:12.5px}
+.tst-hempty{color:var(--mut);font-size:14px;text-align:center;padding:14px}
+.tst-modal{position:fixed;inset:0;background:rgba(4,6,12,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.tst-modal.show{display:flex}
+.tst-modal-card{background:#0d1326;border:1px solid var(--gold);border-radius:20px;padding:36px;text-align:center;max-width:420px;width:100%;animation:pop .35s ease}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.tst-modal-card h3{font-size:22px;margin-bottom:14px}
+.tst-big{font-size:64px;font-weight:800;color:var(--gold2)}
+.tst-biglbl{color:var(--mut);margin-bottom:18px}
+.tst-final-rows{margin-bottom:22px;font-size:15px;line-height:2}
+.tst-final-rows b{color:var(--gold2)}
+@media(max-width:640px){.tst-stats{grid-template-columns:1fr 1fr 1fr}#tstText{font-size:17px}}
+@media(max-width:640px){.glass{padding:20px}.site-header{padding:44px 0 22px}}
+</style>
+</head>
+<body>
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<header class="site-header wrap">
+  <div class="overline">Erion Nezha · Web Projects</div>
+  <h1>Test Shkrimi</h1>
+  <p>Sa shpejt shkruan shqip? Mat WPM dhe saktësinë — me histori dhe grafik.</p>
+  <div class="live-badge"><i></i> LIVE DEMO</div>
+</header>
+
+<main class="wrap">
+  <section class="demo-wrap">
+    <div class="glass" id="demo">
+<div class="demo-note">🧪 Demo lokale — historia ruhet vetëm në browser-in tënd (localStorage).</div>
+<h2 class="app-title">⌨️ Test Shkrimi</h2>
+<div class="tst-dur">
+  <span>⏱️ Kohëzgjatja:</span>
+  <button class="dbtn on" data-d="30">30s</button>
+  <button class="dbtn" data-d="60">60s</button>
+</div>
+<div class="tst-stats">
+  <div class="tst-stat"><div class="tst-num" id="tstTime">30</div><div class="tst-lbl">sekonda</div></div>
+  <div class="tst-stat"><div class="tst-num" id="tstWpm">0</div><div class="tst-lbl">⚡ WPM</div></div>
+  <div class="tst-stat"><div class="tst-num" id="tstAcc">100%</div><div class="tst-lbl">🎯 Saktësia</div></div>
+</div>
+<div class="tst-box" id="tstBox" title="Kliko dhe fillo të shkruash">
+  <div class="tst-hint" id="tstHint">👆 Kliko këtu dhe fillo të shkruash…</div>
+  <div id="tstText"></div>
+  <input id="tstInput" class="tst-hidden" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+</div>
+<div class="tst-btns">
+  <button id="tstStart" class="btn-gold">▶ Fillo testin</button>
+  <button id="tstReset" class="btn-ghost">🔄 Nga e para</button>
+</div>
+<div class="uat-panel">
+  <div class="uat-tl-head"><h3>📊 Historia jote</h3><button id="tstClearHist" class="btn-danger">🗑️ Fshi historikun</button></div>
+  <div class="tst-record" id="tstRecord">🏆 Rekordi yt: —</div>
+  <canvas id="tstChart" width="520" height="180"></canvas>
+  <div id="tstHist"></div>
+</div>
+<div class="tst-modal" id="tstModal">
+  <div class="tst-modal-card">
+    <h3>🎉 Testi përfundoi!</h3>
+    <div class="tst-big" id="tstFinalWpm">0</div>
+    <div class="tst-biglbl">fjalë për minutë</div>
+    <div class="tst-final-rows" id="tstFinalRows"></div>
+    <button id="tstAgain" class="btn-gold">🔄 Provo sërish</button>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <section class="code-section">
+    <h2>💻 Kodi Burim</h2>
+    <p class="sub">I gjithë kodi i këtij projekti — i lexueshëm, i kopjueshëm, gati për t'u mësuar.</p>
+    <div class="tabs">
+      <button class="ctab active" data-tab="html">HTML</button>
+      <button class="ctab" data-tab="css">CSS</button>
+      <button class="ctab" data-tab="js">JavaScript</button>
+      <button id="copyBtn">Kopjo kodin</button>
+    </div>
+    <div class="codebox"><pre><code id="codeView" class="language-html"></code></pre></div>
+  </section>
+</main>
+
+<footer>Krijuar nga <strong>Erion Nezha</strong> · © 2026 — Të gjitha të drejtat e rezervuara</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script id="appjs">
+(function(){
+"use strict";
+var SENT=[
+  "Mëngjesi në Tiranë fillon me aromën e kafesë dhe zhurmën e qytetit që zgjohet ngadalë.",
+  "Mali i Dajtit duket madhështor në agim, kur mjegulla mbulon luginën poshtë.",
+  "Libri që po lexoj flet për ëndrra të mëdha dhe për guximin për t'i ndjekur ato.",
+  "Deti Adriatik shkëlqen nën diell, ndërsa valët përplasen butë në breg.",
+  "Shqipëria ka një histori të pasur, plot me heronj dhe me tradita të vjetra.",
+  "Teknologjia po ndryshon jetën tonë çdo ditë, duke na afruar më shumë me botën.",
+  "Muzika popullore shqiptare mbart në vete shpirtin e maleve dhe të fushave.",
+  "Ushqimi tradicional, si tava e kosit, i bashkon familjet rreth tryezës së madhe.",
+  "Arsimi është çelësi i së ardhmes, ndaj të rinjtë duhet të mësojnë pa u lodhur.",
+  "Udhëtimi nëpër Shqipëri të zbulon bukuri natyrore që të lënë pa frymë."
+];
+var KEY="tst_hist_v1",hist=[];
+try{hist=JSON.parse(localStorage.getItem(KEY)||"[]");if(!Array.isArray(hist))hist=[];}catch(e){hist=[];}
+var dur=30,target="",chars=[],refs=[],started=false,finished=false,left=dur,timer=null;
+function $(id){return document.getElementById(id);}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(hist));}catch(e){}}
+function escCh(c){
+  if(c===" ")return "&nbsp;";
+  return c.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function pickText(){
+  var words=[],s=SENT.slice();
+  while(words.length<25&&s.length){var i=Math.floor(Math.random()*s.length);words=words.concat(s.splice(i,1)[0].split(" "));}
+  return words.slice(0,25).join(" ");
+}
+function build(){
+  target=pickText();chars=[];refs=[];
+  var w=0;
+  for(var i=0;i<target.length;i++){var c=target[i];if(c===" ")w++;chars.push({ch:c,w:w});}
+  var html="";
+  chars.forEach(function(c){html+='<span class="tch">'+escCh(c.ch)+"</span>";});
+  $("tstText").innerHTML=html;
+  refs=Array.prototype.slice.call(document.querySelectorAll("#tstText .tch"));
+}
+function stats(){
+  var v=$("tstInput").value,typed=Math.min(v.length,chars.length),correct=0,i;
+  for(i=0;i<typed;i++){if(v[i]===chars[i].ch)correct++;}
+  var elapsed=dur-left;
+  var wpm=elapsed>0?Math.round((correct/5)/(elapsed/60)):0;
+  var acc=typed>0?Math.round(correct/typed*100):100;
+  return {typed:typed,correct:correct,wpm:wpm,acc:acc};
+}
+function paint(){
+  var v=$("tstInput").value,pos=Math.min(v.length,chars.length),i;
+  var curW=pos<chars.length?chars[pos].w:-1;
+  for(i=0;i<refs.length;i++){
+    var el=refs[i],cls="tch";
+    if(i<pos)cls+=v[i]===chars[i].ch?" ok":" bad";
+    else if(i===pos)cls+=" cur";
+    if(chars[i].w===curW&&i>=pos)cls+=" curw";
+    el.className=cls;
+  }
+  var s=stats();
+  $("tstWpm").textContent=s.wpm;
+  $("tstAcc").textContent=s.acc+"%";
+}
+function startTimer(){
+  if(timer)return;
+  timer=setInterval(function(){
+    left-=0.25;
+    if(left<=0){left=0;finish();}
+    $("tstTime").textContent=Math.ceil(left);
+  },250);
+}
+function finish(){
+  if(finished)return;finished=true;
+  clearInterval(timer);timer=null;
+  $("tstInput").blur();
+  var s=stats();
+  hist.unshift({d:Date.now(),wpm:s.wpm,acc:s.acc});
+  if(hist.length>50)hist.pop();
+  save();renderHist();
+  $("tstFinalWpm").textContent=s.wpm;
+  $("tstFinalRows").innerHTML="🎯 Saktësia: <b>"+s.acc+"%</b><br>✅ Karaktere të sakta: <b>"+s.correct+"</b><br>❌ Gabime: <b>"+(s.typed-s.correct)+"</b>";
+  $("tstModal").classList.add("show");
+}
+function reset(){
+  clearInterval(timer);timer=null;
+  started=false;finished=false;left=dur;
+  $("tstTime").textContent=dur;$("tstWpm").textContent="0";$("tstAcc").textContent="100%";
+  $("tstInput").value="";$("tstModal").classList.remove("show");
+  $("tstBox").classList.remove("live");
+  $("tstHint").style.display="block";
+  build();
+}
+function renderHist(){
+  var best=0;hist.forEach(function(h){if(h.wpm>best)best=h.wpm;});
+  $("tstRecord").textContent="🏆 Rekordi yt: "+(best?best+" WPM":"—");
+  var cv=$("tstChart");
+  if(cv.getContext){
+    var ctx=cv.getContext("2d"),W=cv.width,H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    if(hist.length>=2){
+      var data=hist.slice(0,20).reverse();
+      var max=Math.max.apply(null,data.map(function(h){return h.wpm;}));
+      if(max<10)max=10;
+      function px(i){return 14+i*(W-28)/(data.length-1);}
+      function py(v){return H-16-(v/max)*(H-36);}
+      var g=ctx.createLinearGradient(0,0,0,H);
+      g.addColorStop(0,"rgba(212,175,55,.4)");g.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.beginPath();ctx.moveTo(px(0),py(data[0].wpm));
+      for(var i=1;i<data.length;i++)ctx.lineTo(px(i),py(data[i].wpm));
+      ctx.strokeStyle="#D4AF37";ctx.lineWidth=2.5;ctx.lineJoin="round";ctx.stroke();
+      ctx.lineTo(px(data.length-1),H-6);ctx.lineTo(px(0),H-6);ctx.closePath();ctx.fillStyle=g;ctx.fill();
+      ctx.fillStyle="#D4AF37";
+      for(i=0;i<data.length;i++){ctx.beginPath();ctx.arc(px(i),py(data[i].wpm),3.5,0,7);ctx.fill();}
+      ctx.fillStyle="#9aa3b8";ctx.font="11px sans-serif";ctx.fillText(max+" WPM",8,14);
+    }else{
+      ctx.fillStyle="#9aa3b8";ctx.font="14px sans-serif";ctx.textAlign="center";
+      ctx.fillText(hist.length?"Duhen të paktën 2 teste për grafik":"Bëj testin e parë për të parë grafikun",W/2,H/2);
+      ctx.textAlign="left";
+    }
+  }
+  var html="";
+  if(!hist.length)html='<div class="tst-hempty">Ende asnjë test. Fillo të parin! 👆</div>';
+  hist.slice(0,10).forEach(function(h){
+    var d=new Date(h.d);
+    function p2(n){return (n<10?"0":"")+n;}
+    html+='<div class="tst-hrow"><span>⚡ '+h.wpm+' WPM · 🎯 '+h.acc+'%</span><span>'+p2(d.getDate())+"/"+p2(d.getMonth()+1)+" "+p2(d.getHours())+":"+p2(d.getMinutes())+"</span></div>";
+  });
+  $("tstHist").innerHTML=html;
+}
+var dbtns=document.querySelectorAll(".dbtn"),i;
+for(i=0;i<dbtns.length;i++){dbtns[i].addEventListener("click",function(){
+  dur=+this.getAttribute("data-d");
+  for(var j=0;j<dbtns.length;j++)dbtns[j].classList.toggle("on",dbtns[j]===this);
+  reset();
+});}
+$("tstBox").addEventListener("click",function(){$("tstInput").focus();});
+$("tstStart").addEventListener("click",function(){
+  $("tstBox").classList.add("live");$("tstHint").style.display="none";
+  $("tstInput").focus();
+});
+$("tstReset").addEventListener("click",reset);
+$("tstAgain").addEventListener("click",function(){
+  reset();$("tstBox").classList.add("live");$("tstHint").style.display="none";
+  $("tstInput").focus();
+});
+$("tstInput").addEventListener("input",function(){
+  if(finished)return;
+  if(!started){started=true;$("tstBox").classList.add("live");$("tstHint").style.display="none";startTimer();}
+  if(this.value.length>=chars.length){this.value=this.value.slice(0,chars.length);}
+  paint();
+});
+$("tstClearHist").addEventListener("click",function(){
+  if(!hist.length){alert("Historiku është bosh.");return;}
+  if(confirm("Të fshihet i gjithë historiku i testeve?")){hist=[];save();renderHist();}
+});
+build();renderHist();
+})();
+</script>
+<script>
+(function(){
+  var tabs={
+    html:{lang:"html",get:function(){return document.getElementById("demo").innerHTML.trim();}},
+    css:{lang:"css",get:function(){return document.getElementById("appcss").textContent.trim();}},
+    js:{lang:"javascript",get:function(){return document.getElementById("appjs").textContent.trim();}}
+  };
+  var view=document.getElementById("codeView"),cur="html";
+  function render(){
+    view.textContent=tabs[cur].get();
+    view.className="language-"+tabs[cur].lang;
+    if(window.hljs){delete view.dataset.highlighted;hljs.highlightElement(view);}
+    var bs=document.querySelectorAll(".ctab");
+    for(var i=0;i<bs.length;i++)bs[i].classList.toggle("active",bs[i].dataset.tab===cur);
+  }
+  var bs=document.querySelectorAll(".ctab");
+  for(var i=0;i<bs.length;i++)bs[i].addEventListener("click",function(){cur=this.dataset.tab;render();});
+  document.getElementById("copyBtn").addEventListener("click",function(){
+    var b=this,code=tabs[cur].get();
+    function done(t){b.textContent=t;setTimeout(function(){b.textContent="Kopjo kodin";},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(function(){done("U kopjua ✓");},function(){done("Dështoi");});}
+    else{var ta=document.createElement("textarea");ta.value=code;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done("U kopjua ✓");}catch(e){done("Dështoi");}document.body.removeChild(ta);}
+  });
+  render();
+})();
+</script>
+</body>
+</html>
